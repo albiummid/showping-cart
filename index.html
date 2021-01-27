@@ -86,8 +86,6 @@
          if( cartOneQuantityNum > 1){
             const cartOneTotalQuantity = cartOneQuantityNum - 1;
          document.getElementById("cart-one-quantity").value = cartOneTotalQuantity;
-         const cartOnePrice =document.getElementById("cart-one-price").innerText;
-         const cartOnePriceNum = parseFloat(cartOnePrice);
          const cartOneTotalPrice = 1219 * cartOneTotalQuantity;
          document.getElementById("cart-one-price").innerText = cartOneTotalPrice;
          }
@@ -105,8 +103,6 @@
          const cartOneQuantityNum = parseFloat(cartOneQuantity);
             const cartOneTotalQuantity = cartOneQuantityNum + 1;
          document.getElementById("cart-one-quantity").value = cartOneTotalQuantity;
-         const cartOnePrice =document.getElementById("cart-one-price").innerText;
-         const cartOnePriceNum = parseFloat(cartOnePrice);
          const cartOneTotalPrice = 1219 * cartOneTotalQuantity;
          document.getElementById("cart-one-price").innerText = cartOneTotalPrice;
          
@@ -121,8 +117,6 @@
          if( cartTwoQuantityNum > 1){
             const cartTwoTotalQuantity = cartTwoQuantityNum - 1;
          document.getElementById("cart-two-quantity").value = cartTwoTotalQuantity;
-         const cartTwoPrice =document.getElementById("cart-two-price").innerText;
-         const cartTwoPriceNum = parseFloat(cartTwoPrice);
          const cartTwoTotalPrice = 59 * cartTwoTotalQuantity;
          document.getElementById("cart-two-price").innerText = cartTwoTotalPrice;
          }
@@ -140,8 +134,6 @@
          const cartTwoQuantityNum = parseFloat(cartTwoQuantity);
             const cartTwoTotalQuantity = cartTwoQuantityNum + 1;
          document.getElementById("cart-two-quantity").value = cartTwoTotalQuantity;
-         const cartTwoPrice =document.getElementById("cart-two-price").innerText;
-         const cartTwoPriceNum = parseFloat(cartTwoPrice);
          const cartTwoTotalPrice = 59 * cartTwoTotalQuantity;
          document.getElementById("cart-two-price").innerText = cartTwoTotalPrice;  
       })
