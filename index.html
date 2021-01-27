@@ -25,11 +25,11 @@
 
                      <div class="col-md-5 center-item">
                         <div class="input-group number-spinner">
-                           <button class="btn btn-default"><i class="fas fa-minus"></i></button>
-                           <input type="text" class="form-control text-center" value="1">
-                           <button class="btn btn-default"><i class="fas fa-plus"></i></button>
+                           <button id="cart-one-minus" class="btn btn-default"><i class="fas fa-minus"></i></button>
+                           <input id="cart-one-quantity" type="text" class="form-control text-center" value="1">
+                           <button id="cart-one-plus" class="btn btn-default"><i class="fas fa-plus"></i></button>
                         </div>
-                        <h5>$1219</h5>
+                        <h5>$ <span id="cart-one-price">1219</span></h5>
                         <img src="images/remove.png" alt="" class="remove-item">
                      </div>
                   </div>
@@ -43,12 +43,12 @@
                      </div>
                      <div class="col-md-5 center-item">
                         <div class="input-group number-spinner">
-                           <button class="btn btn-default"><i class="fas fa-minus"></i></button>
-                           <input type="text" class="form-control text-center" value="1">
-                           <button class="btn btn-default"><i class="fas fa-plus"></i></button>
+                           <button id="cart-two-minus" class="btn btn-default"><i class="fas fa-minus"></i></button>
+                           <input id="cart-two-quantity" type="text" class="form-control text-center" value="1">
+                           <button id="cart-two-plus" class="btn btn-default"><i class="fas fa-plus"></i></button>
 
                         </div>
-                        <h5>$59</h5>
+                        <h5>$ <span id="cart-two-price">59</span></h5>
                         <img src="images/remove.png" alt="" class="remove-item">
                      </div>
                   </div>
@@ -77,6 +77,75 @@
          </div>
       </div>
    </section>
+   <script>
+      // cart1-minus
+      const cartOneMinusBtn = document.getElementById("cart-one-minus");
+      cartOneMinusBtn.addEventListener("click",function(){
+         const cartOneQuantity = document.getElementById("cart-one-quantity").value;
+         const cartOneQuantityNum = parseFloat(cartOneQuantity);
+         if( cartOneQuantityNum > 1){
+            const cartOneTotalQuantity = cartOneQuantityNum - 1;
+         document.getElementById("cart-one-quantity").value = cartOneTotalQuantity;
+         const cartOnePrice =document.getElementById("cart-one-price").innerText;
+         const cartOnePriceNum = parseFloat(cartOnePrice);
+         const cartOneTotalPrice = 1219 * cartOneTotalQuantity;
+         document.getElementById("cart-one-price").innerText = cartOneTotalPrice;
+         }
+         
+        
+      })
+
+      // cart1-plus button event handler
+      const cartOnePlusBtn = document.getElementById("cart-one-plus");
+      cartOnePlusBtn.addEventListener("click",function(){
+         const cartOneQuantity = document.getElementById("cart-one-quantity").value;
+         const cartOneQuantityNum = parseFloat(cartOneQuantity);
+            const cartOneTotalQuantity = cartOneQuantityNum + 1;
+         document.getElementById("cart-one-quantity").value = cartOneTotalQuantity;
+
+         const cartOnePrice =document.getElementById("cart-one-price").innerText;
+         const cartOnePriceNum = parseFloat(cartOnePrice);
+         const cartOneTotalPrice = 1219 * cartOneTotalQuantity;
+         document.getElementById("cart-one-price").innerText = cartOneTotalPrice;
+         
+        
+      })
+
+      // cart2-minus button event handler
+      const cartTwoMinusBtn = document.getElementById("cart-two-minus");
+      cartTwoMinusBtn.addEventListener("click",function(){
+         const cartTwoQuantity = document.getElementById("cart-two-quantity").value;
+         const cartTwoQuantityNum = parseFloat(cartTwoQuantity);
+         if( cartTwoQuantityNum > 1){
+            const cartTwoTotalQuantity = cartTwoQuantityNum - 1;
+         document.getElementById("cart-two-quantity").value = cartTwoTotalQuantity;
+         const cartTwoPrice =document.getElementById("cart-two-price").innerText;
+         const cartTwoPriceNum = parseFloat(cartTwoPrice);
+         const cartTwoTotalPrice = 59 * cartTwoTotalQuantity;
+         document.getElementById("cart-two-price").innerText = cartTwoTotalPrice;
+         }
+         
+        
+      })
+
+      // cart2-plus button event handler
+
+      const cartTwoPlusBtn = document.getElementById("cart-two-plus");
+      cartTwoPlusBtn.addEventListener("click",function(){
+         const cartTwoQuantity = document.getElementById("cart-two-quantity").value;
+         const cartTwoQuantityNum = parseFloat(cartTwoQuantity);
+            const cartTwoTotalQuantity = cartTwoQuantityNum + 1;
+         document.getElementById("cart-two-quantity").value = cartTwoTotalQuantity;
+         const cartTwoPrice =document.getElementById("cart-two-price").innerText;
+         const cartTwoPriceNum = parseFloat(cartTwoPrice);
+         const cartTwoTotalPrice = 59 * cartTwoTotalQuantity;
+         document.getElementById("cart-two-price").innerText = cartTwoTotalPrice;  
+      })
+
+      // checkout button event handler
+      
+
+   </script>
 </body>
 
 </html>
