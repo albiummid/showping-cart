@@ -64,14 +64,14 @@
                      </div>
 
                      <div class="col-md-4 status">
-                        <h5>$1,278</h5>
+                        <h5>$ <span id="subtotal-amount">1278</span></h5>
                         <h5>$0</h5>
-                        <h5>$1,278</h5>
+                        <h5>$ <span id="total-amount">1278</span></h5>
                      </div>
                   </div>
                </div>
                <div class="col-md-12 pt-4 pb-4">
-                  <button type="button" class="btn btn-success check-out">Check Out</button>
+                  <button id="checkOut-button" type="button" class="btn btn-success check-out">Check Out</button>
                </div>
             </div>
          </div>
@@ -90,6 +90,9 @@
          const cartOnePriceNum = parseFloat(cartOnePrice);
          const cartOneTotalPrice = 1219 * cartOneTotalQuantity;
          document.getElementById("cart-one-price").innerText = cartOneTotalPrice;
+         }
+         else{
+            alert("Quantity can't be less than 1")
          }
          
         
@@ -124,7 +127,9 @@
          const cartTwoTotalPrice = 59 * cartTwoTotalQuantity;
          document.getElementById("cart-two-price").innerText = cartTwoTotalPrice;
          }
-         
+         else{
+            alert("Quantity can't be less than 1")
+         }
         
       })
 
@@ -143,7 +148,21 @@
       })
 
       // checkout button event handler
-      
+      const checkOutBtn = document.getElementById("checkOut-button")
+      checkOutBtn.addEventListener("click",function(){
+         const subtotalAmount = document.getElementById("subtotal-amount").innerText;
+         const subtotalAmountNum = parseFloat(subtotalAmount);
+// cart-1 price
+         const cartOnePrice =document.getElementById("cart-one-price").innerText;
+         const cartOnePriceNum = parseFloat(cartOnePrice);
+// cart-2 price
+         const cartTwoPrice =document.getElementById("cart-two-price").innerText;
+         const cartTwoPriceNum = parseFloat(cartTwoPrice);
+
+         const subtotalPrice = cartOnePriceNum + cartTwoPriceNum;
+         document.getElementById("subtotal-amount").innerText = subtotalPrice;
+         document.getElementById("total-amount").innerText = subtotalPrice;
+      })
 
    </script>
 </body>
