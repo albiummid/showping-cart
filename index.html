@@ -25,11 +25,11 @@
 
                      <div class="col-md-5 center-item">
                         <div class="input-group number-spinner">
-                           <button id="cart-one-minus" class="btn btn-default"><i class="fas fa-minus"></i></button>
-                           <input id="cart-one-quantity" type="text" class="form-control text-center" value="1" disabled>
-                           <button id="cart-one-plus" class="btn btn-default"><i class="fas fa-plus"></i></button>
+                           <button id="phone-decrease" class="btn btn-default"><i class="fas fa-minus"></i></button>
+                           <input id="phone-count" type="text" class="form-control text-center" value="1" disabled>
+                           <button id="phone-increase" class="btn btn-default"><i class="fas fa-plus"></i></button>
                         </div>
-                        <h5>$ <span id="cart-one-price">1219</span></h5>
+                        <h5>$ <span id="phone-price">1219</span></h5>
                         <img src="images/remove.png" alt="" class="remove-item">
                      </div>
                   </div>
@@ -43,12 +43,12 @@
                      </div>
                      <div class="col-md-5 center-item">
                         <div class="input-group number-spinner">
-                           <button id="cart-two-minus" class="btn btn-default"><i class="fas fa-minus"></i></button>
-                           <input id="cart-two-quantity" type="text" class="form-control text-center" value="1" disabled>
-                           <button id="cart-two-plus" class="btn btn-default"><i class="fas fa-plus"></i></button>
+                           <button onclick="handleProductChange('case',false)" id="case-decrease" class="btn btn-default"><i class="fas fa-minus"></i></button>
+                           <input id="case-count" type="text" class="form-control text-center" value="1" disabled>
+                           <button onclick="handleProductChange('case', true)" id="case-increase" class="btn btn-default"><i class="fas fa-plus"></i></button>
 
                         </div>
-                        <h5>$ <span id="cart-two-price">59</span></h5>
+                        <h5>$ <span id="case-price">59</span></h5>
                         <img src="images/remove.png" alt="" class="remove-item">
                      </div>
                   </div>
@@ -65,13 +65,13 @@
 
                      <div class="col-md-4 status">
                         <h5>$ <span id="subtotal-amount">1278</span></h5>
-                        <h5>$0</h5>
-                        <h5>$ <span id="total-amount">1278</span></h5>
+                        <h5>$ <span id="tax">128</span></h5>
+                        <h5>$ <span id="total-amount">1406</span></h5>
                      </div>
                   </div>
                </div>
                <div class="col-md-12 pt-4 pb-4">
-                  <button id="checkOut-button" type="button" class="btn btn-success check-out">Check Out</button>
+                  <button  type="button" class="btn btn-success check-out">Check Out</button>
                </div>
             </div>
          </div>
@@ -79,82 +79,72 @@
    </section>
    <script>
       // cart1-minus
-      const cartOneMinusBtn = document.getElementById("cart-one-minus");
-      cartOneMinusBtn.addEventListener("click",function(){
-         const cartOneQuantity = document.getElementById("cart-one-quantity").value;
-         const cartOneQuantityNum = parseFloat(cartOneQuantity);
-         if( cartOneQuantityNum > 1){
-            const cartOneTotalQuantity = cartOneQuantityNum - 1;
-         document.getElementById("cart-one-quantity").value = cartOneTotalQuantity;
-         const cartOneTotalPrice = 1219 * cartOneTotalQuantity;
-         document.getElementById("cart-one-price").innerText = cartOneTotalPrice;
-         }
-         else{
-            alert("Quantity can't be less than 1")
-         }
-         
-        
-      })
+    document.getElementById("phone-decrease").addEventListener("click",function(){
+         handleProductChange('phone',false)
+      });
 
       // cart1-plus button event handler
-      const cartOnePlusBtn = document.getElementById("cart-one-plus");
-      cartOnePlusBtn.addEventListener("click",function(){
-         const cartOneQuantity = document.getElementById("cart-one-quantity").value;
-         const cartOneQuantityNum = parseFloat(cartOneQuantity);
-            const cartOneTotalQuantity = cartOneQuantityNum + 1;
-         document.getElementById("cart-one-quantity").value = cartOneTotalQuantity;
-         const cartOneTotalPrice = 1219 * cartOneTotalQuantity;
-         document.getElementById("cart-one-price").innerText = cartOneTotalPrice;
-         
-        
-      })
+     document.getElementById("phone-increase").addEventListener("click",function(){
+         handleProductChange('phone',true)
+      });
 
-      // cart2-minus button event handler
-      const cartTwoMinusBtn = document.getElementById("cart-two-minus");
-      cartTwoMinusBtn.addEventListener("click",function(){
-         const cartTwoQuantity = document.getElementById("cart-two-quantity").value;
-         const cartTwoQuantityNum = parseFloat(cartTwoQuantity);
-         if( cartTwoQuantityNum > 1){
-            const cartTwoTotalQuantity = cartTwoQuantityNum - 1;
-         document.getElementById("cart-two-quantity").value = cartTwoTotalQuantity;
-         const cartTwoTotalPrice = 59 * cartTwoTotalQuantity;
-         document.getElementById("cart-two-price").innerText = cartTwoTotalPrice;
+
+      
+
+      function handleProductChange(product ,isIncrease){
+         const productInput = document.getElementById( product +"-count");
+         const productCount = parseInt(productInput.value);
+            let productNewCount = productCount;
+            if(isIncrease == true){
+               productNewCount = productCount + 1;
+            }
+            if(isIncrease == false && productCount > 1 ){
+               productNewCount = productCount - 1;
+            }
+            productInput.value = productNewCount;
+         let productTotalPrice = productNewCount;
+         if(product == 'phone'){
+            productTotalPrice = productNewCount * 1219;
          }
-         else{
-            alert("Quantity can't be less than 1")
+         if(product == 'case'){
+            productTotalPrice = productNewCount * 59;
          }
-        
-      })
 
-      // cart2-plus button event handler
+         document.getElementById(product +"-price").innerText = productTotalPrice;
 
-      const cartTwoPlusBtn = document.getElementById("cart-two-plus");
-      cartTwoPlusBtn.addEventListener("click",function(){
-         const cartTwoQuantity = document.getElementById("cart-two-quantity").value;
-         const cartTwoQuantityNum = parseFloat(cartTwoQuantity);
-            const cartTwoTotalQuantity = cartTwoQuantityNum + 1;
-         document.getElementById("cart-two-quantity").value = cartTwoTotalQuantity;
-         const cartTwoTotalPrice = 59 * cartTwoTotalQuantity;
-         document.getElementById("cart-two-price").innerText = cartTwoTotalPrice;  
-      })
+         calculateTotal(); 
+      }
 
-      // checkout button event handler
-      const checkOutBtn = document.getElementById("checkOut-button")
-      checkOutBtn.addEventListener("click",function(){
-         const subtotalAmount = document.getElementById("subtotal-amount").innerText;
-         const subtotalAmountNum = parseFloat(subtotalAmount);
-// cart-1 price
-         const cartOnePrice =document.getElementById("cart-one-price").innerText;
-         const cartOnePriceNum = parseFloat(cartOnePrice);
-// cart-2 price
-         const cartTwoPrice =document.getElementById("cart-two-price").innerText;
-         const cartTwoPriceNum = parseFloat(cartTwoPrice);
+      function calculateTotal(){
+         const phoneCount = getInputValue('phone');
+         const caseCount = getInputValue('case');
+         const totalPrice = phoneCount * 1219 + caseCount * 59;
+         document.getElementById("subtotal-amount").innerText = totalPrice;
 
-         const subtotalPrice = cartOnePriceNum + cartTwoPriceNum;
-         document.getElementById("subtotal-amount").innerText = subtotalPrice;
-         document.getElementById("total-amount").innerText = subtotalPrice;
-      })
+         const tax = Math.round(totalPrice * 0.1);
+    document.getElementById("tax").innerText = tax;
 
+    const totalAmount = totalPrice + tax ;
+    document.getElementById("total-amount").innerText= totalAmount;
+      }
+
+
+
+
+
+
+
+
+
+
+
+
+      function getInputValue (product){
+         const productInput = document.getElementById(product+"-count");
+         const productCount = parseInt(productInput.value);
+         return productCount;
+
+      }
    </script>
 </body>
 
